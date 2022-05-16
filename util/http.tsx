@@ -20,6 +20,7 @@ export async function fetchCats() {
       amount: response.data[key].amount,
       date: new Date(response.data[key].date),
       description: response.data[key].description,
+      name: response.data[key].name,
     };
     cats.push(catObj);
   }
