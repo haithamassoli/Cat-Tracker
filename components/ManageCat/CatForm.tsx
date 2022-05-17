@@ -6,7 +6,12 @@ import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 import { GlobalStyles } from "../../constants/styles";
 
-function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
+function CatForm({
+  submitButtonLabel,
+  onCancel,
+  onSubmit,
+  defaultValues,
+}: any) {
   const [inputs, setInputs] = useState({
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
@@ -26,7 +31,7 @@ function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     },
   });
 
-  function inputChangedHandler(inputIdentifier, enteredValue) {
+  function inputChangedHandler(inputIdentifier: any, enteredValue: any) {
     setInputs((curInputs) => {
       return {
         ...curInputs,
@@ -83,6 +88,7 @@ function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
+            // @ts-ignore
             onChangeText: inputChangedHandler.bind(this, "amount"),
             value: inputs.amount.value,
           }}
@@ -94,6 +100,7 @@ function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
+            // @ts-ignore
             onChangeText: inputChangedHandler.bind(this, "date"),
             value: inputs.date.value,
           }}
@@ -104,6 +111,7 @@ function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         invalid={!inputs.name.isValid}
         textInputConfig={{
           placeholder: "Cat Name...",
+          // @ts-ignore
           onChangeText: inputChangedHandler.bind(this, "name"),
           value: inputs.name.value,
         }}
@@ -115,6 +123,7 @@ function CatForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
           multiline: true,
           // autoCapitalize: 'none'
           // autoCorrect: false // default is true
+          // @ts-ignore
           onChangeText: inputChangedHandler.bind(this, "description"),
           value: inputs.description.value,
         }}
