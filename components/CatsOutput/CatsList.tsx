@@ -1,4 +1,5 @@
 import { FlatList } from "react-native";
+import { catObjType } from "../../types/types";
 
 import CatItem from "./CatItem";
 
@@ -6,7 +7,7 @@ function renderCatItem(itemData: any) {
   return <CatItem {...itemData.item} />;
 }
 
-function CatsList({ cats }: any) {
+function CatsList({ cats }: catObjType[] | any) {
   return (
     <FlatList
       data={cats}

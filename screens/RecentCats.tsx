@@ -4,12 +4,13 @@ import CatsOutput from "../components/CatsOutput/CatsOutput";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { CatsContext } from "../store/cats-context";
+import { catObjType } from "../types/types";
 import { getDateMinusDays } from "../util/date";
 import { fetchCats } from "../util/http";
 
 function RecentCats() {
   const [isFetching, setIsFetching] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   const catsCtx = useContext(CatsContext);
 
@@ -36,7 +37,7 @@ function RecentCats() {
     return <LoadingOverlay />;
   }
 
-  const RecentCats = catsCtx.cats.filter((cat) => {
+  const recentCats = catsCtx.cats.filter((cat: catObjType) => {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today, 7);
 
@@ -45,7 +46,7 @@ function RecentCats() {
 
   return (
     <CatsOutput
-      cats={RecentCats}
+      cats={recentCats}
       catsPeriod="Last 7 Days"
       fallbackText="No cats registered for the last 7 days."
     />

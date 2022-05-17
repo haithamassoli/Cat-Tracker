@@ -1,5 +1,7 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../App";
 
 import CatForm from "../components/ManageCat/CatForm";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
@@ -7,11 +9,12 @@ import IconButton from "../components/UI/IconButton";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import { GlobalStyles } from "../constants/styles";
 import { CatsContext } from "../store/cats-context";
+import { catObjType } from "../types/types";
 import { storeCat, updateCat, deleteCat } from "../util/http";
 
-// type props =
+type Props = NativeStackScreenProps<RootStackParamsList, "ManageCat">;
 
-function ManageCat({ route, navigation }: any) {
+function ManageCat({ route, navigation }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -20,7 +23,9 @@ function ManageCat({ route, navigation }: any) {
   const editedCatId = route.params?.catId;
   const isEditing = !!editedCatId;
 
-  const selectedCat = catsCtx.cats.find((cat: any) => cat.id === editedCatId);
+  const selectedCat = catsCtx.cats.find(
+    (cat: catObjType) => cat.id === editedCatId
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,7 +39,7 @@ function ManageCat({ route, navigation }: any) {
       await deleteCat(editedCatId);
       catsCtx.deleteCat(editedCatId);
       navigation.goBack();
-    } catch (error: any) {
+    } catch (error) {
       setError("Could not delete cat - please try again later!");
       setIsSubmitting(false);
     }
@@ -44,7 +49,7 @@ function ManageCat({ route, navigation }: any) {
     navigation.goBack();
   }
 
-  async function confirmHandler(catData: any) {
+  async function confirmHandler(catData: catObjType) {
     setIsSubmitting(true);
     try {
       if (isEditing) {
@@ -55,7 +60,7 @@ function ManageCat({ route, navigation }: any) {
         catsCtx.addCat({ ...catData, id: id });
       }
       navigation.goBack();
-    } catch (error: any) {
+    } catch (error) {
       setError("Could not save data - please try again later!");
       setIsSubmitting(false);
     }

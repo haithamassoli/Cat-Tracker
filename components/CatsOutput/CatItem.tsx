@@ -1,11 +1,13 @@
+import { NavigatorScreenParams } from "@react-navigation/native";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
+import { catObjType } from "../../types/types";
 
-function CatItem({ id, description, amount, date, name }: any) {
-  const navigation = useNavigation();
+function CatItem({ id, description, amount, date, name }: catObjType) {
+  const navigation = useNavigation<any>();
 
   function catPressHandler() {
     navigation.navigate("ManageCat", {

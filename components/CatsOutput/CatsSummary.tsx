@@ -1,9 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
+import { catObjType } from "../../types/types";
 
-function CatsSummary({ cats, periodName }: any) {
-  const catsSum = cats.reduce((sum: any, cat: any) => {
+type Props = {
+  cats: catObjType[];
+  periodName: string;
+};
+
+function CatsSummary({ cats, periodName }: Props) {
+  const catsSum = cats.reduce((sum: number, cat: catObjType) => {
     return sum + cat.amount;
   }, 0);
 

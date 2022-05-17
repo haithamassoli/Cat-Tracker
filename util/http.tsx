@@ -28,10 +28,10 @@ export async function fetchCats() {
   return cats;
 }
 
-export function updateCat(id: number, catData: {}) {
+export function updateCat(id: string, catData: {}) {
   return axios.put(BACKEND_URL + `/cats/${id}.json`, catData);
 }
 
-export function deleteCat(id: number) {
+export function deleteCat(id: string) {
   return axios.delete(BACKEND_URL + `/cats/${id}.json`);
 }

@@ -1,5 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -12,12 +15,14 @@ import IconButton from "./components/UI/IconButton";
 import CatsContextProvider from "./store/cats-context";
 
 export type BottomTabsParamsList = {
-  RecentCats: any;
-  AllCats: any;
+  RecentCats: undefined;
+  AllCats: undefined;
 };
 export type RootStackParamsList = {
-  CatsOverview: any;
-  ManageCat: any;
+  CatsOverview: BottomTabsParamsList;
+  ManageCat: {
+    catId?: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();

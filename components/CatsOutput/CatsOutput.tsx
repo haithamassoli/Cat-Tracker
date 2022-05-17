@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
+import { catObjType } from "../../types/types";
 import CatsList from "./CatsList";
 import CatsSummary from "./CatsSummary";
 
-function CatsOutput({ cats, catsPeriod, fallbackText }: any) {
+type Props = {
+  cats: catObjType[];
+  catsPeriod: string;
+  fallbackText: string;
+};
+
+function CatsOutput({ cats, catsPeriod, fallbackText }: Props) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
   if (cats.length > 0) {
