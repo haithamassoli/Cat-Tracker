@@ -2,8 +2,8 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { GlobalStyles } from "../../constants/styles";
 
-function CatsSummary({ cats, periodName }) {
-  const catsSum = cats.reduce((sum, cat) => {
+function CatsSummary({ cats, periodName }: any) {
+  const catsSum = cats.reduce((sum: any, cat: any) => {
     return sum + cat.amount;
   }, 0);
 

@@ -2,11 +2,11 @@ import { FlatList } from "react-native";
 
 import CatItem from "./CatItem";
 
-function renderCatItem(itemData) {
+function renderCatItem(itemData: any) {
   return <CatItem {...itemData.item} />;
 }
 
-function CatsList({ cats }) {
+function CatsList({ cats }: any) {
   return (
     <FlatList
       data={cats}

@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 
-function CatItem({ id, description, amount, date, name }) {
+function CatItem({ id, description, amount, date, name }: any) {
   const navigation = useNavigation();
 
   function catPressHandler() {

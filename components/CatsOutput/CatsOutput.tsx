@@ -4,7 +4,7 @@ import { GlobalStyles } from "../../constants/styles";
 import CatsList from "./CatsList";
 import CatsSummary from "./CatsSummary";
 
-function CatsOutput({ cats, catsPeriod, fallbackText }) {
+function CatsOutput({ cats, catsPeriod, fallbackText }: any) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
   if (cats.length > 0) {

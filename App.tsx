@@ -11,8 +11,17 @@ import { GlobalStyles } from "./constants/styles";
 import IconButton from "./components/UI/IconButton";
 import CatsContextProvider from "./store/cats-context";
 
-const Stack = createNativeStackNavigator();
-const BottomTabs = createBottomTabNavigator();
+export type BottomTabsParamsList = {
+  RecentCats: any;
+  AllCats: any;
+};
+export type RootStackParamsList = {
+  CatsOverview: any;
+  ManageCat: any;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamsList>();
+const BottomTabs = createBottomTabNavigator<BottomTabsParamsList>();
 
 function CatsOverview() {
   return (

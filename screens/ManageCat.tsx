@@ -9,16 +9,18 @@ import { GlobalStyles } from "../constants/styles";
 import { CatsContext } from "../store/cats-context";
 import { storeCat, updateCat, deleteCat } from "../util/http";
 
-function ManageCat({ route, navigation }) {
+// type props =
+
+function ManageCat({ route, navigation }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   const catsCtx = useContext(CatsContext);
 
   const editedCatId = route.params?.catId;
   const isEditing = !!editedCatId;
 
-  const selectedCat = catsCtx.cats.find((cat) => cat.id === editedCatId);
+  const selectedCat = catsCtx.cats.find((cat: any) => cat.id === editedCatId);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -32,7 +34,7 @@ function ManageCat({ route, navigation }) {
       await deleteCat(editedCatId);
       catsCtx.deleteCat(editedCatId);
       navigation.goBack();
-    } catch (error) {
+    } catch (error: any) {
       setError("Could not delete cat - please try again later!");
       setIsSubmitting(false);
     }
@@ -42,7 +44,7 @@ function ManageCat({ route, navigation }) {
     navigation.goBack();
   }
 
-  async function confirmHandler(catData) {
+  async function confirmHandler(catData: any) {
     setIsSubmitting(true);
     try {
       if (isEditing) {
@@ -53,7 +55,7 @@ function ManageCat({ route, navigation }) {
         catsCtx.addCat({ ...catData, id: id });
       }
       navigation.goBack();
-    } catch (error) {
+    } catch (error: any) {
       setError("Could not save data - please try again later!");
       setIsSubmitting(false);
     }
