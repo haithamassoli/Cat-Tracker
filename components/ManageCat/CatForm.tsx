@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Input from "./Input";
 import Button from "../UI/Button";
-import { dateIsValidForm, getFormattedDate } from "../../util/date";
+import { getFormattedDate } from "../../util/date";
 import { GlobalStyles } from "../../constants/styles";
 
 function CatForm({
@@ -43,13 +43,13 @@ function CatForm({
   function submitHandler() {
     const catData = {
       amount: +inputs.amount.value,
-      date: new Date(inputs.date.value),
+      date: new Date(inputs.date.value.split("-").reverse().join("-")),
       name: inputs.name.value,
       description: inputs.description.value,
     };
 
     const amountIsValid = !isNaN(catData.amount) && catData.amount > 0;
-    const dateIsValid = dateIsValidForm(getFormattedDate(catData.date));
+    const dateIsValid = catData.date.toString() !== "Invalid Date";
     const nameIsValid = catData.name !== "";
     const descriptionIsValid = catData.description.trim().length > 0;
 

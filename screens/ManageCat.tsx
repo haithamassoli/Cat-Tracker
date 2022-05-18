@@ -22,7 +22,6 @@ function ManageCat({ route, navigation }: Props) {
 
   const editedCatId = route.params?.catId;
   const isEditing = !!editedCatId;
-
   const selectedCat = catsCtx.cats.find(
     (cat: catObjType) => cat.id === editedCatId
   );
@@ -36,7 +35,9 @@ function ManageCat({ route, navigation }: Props) {
   async function deleteCatHandler() {
     setIsSubmitting(true);
     try {
+      // @ts-ignore
       await deleteCat(editedCatId);
+      // @ts-ignore
       catsCtx.deleteCat(editedCatId);
       navigation.goBack();
     } catch (error) {
